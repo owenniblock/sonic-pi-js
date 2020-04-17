@@ -1,11 +1,19 @@
 {
   "name": "sonic-pi-js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "JavaScript support library for Sonic Pi",
   "main": "src/SonicPJs.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Owen Niblock",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/owenniblock/sonic-pi-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/owenniblock/sonic-pi-js/issues"
+  },
+  "homepage": "https://github.com/owenniblock/sonic-pi-js#readme"
 }

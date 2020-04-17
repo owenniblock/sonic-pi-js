@@ -1,5 +1,50 @@
 var SonicPJs = function() {
 
+  this.FX = {
+    autotuner: "autotuner",
+    bandEQ: "band_eq",
+    bitcrusher: "bitcrusher",
+    bpf: "bpf",
+    compressor: "compressor",
+    distortion: "distortion",
+    echo: "echo",
+    eq: "eq",
+    flanger: "flanger",
+    gverb: "gverb",
+    hpf: "hpf",
+    ixiTechno: "ixi_techno",
+    krush: "krush",
+    level: "level",
+    lpf: "lpf",
+    mono: "mono",
+    nbpf: "nbpf",
+    nhpf: "nhpf",
+    nlpf: "nlpf",
+    normaliser: "normaliser",
+    nrbpf: "nrbpf",
+    nrhpf: "nrhpf",
+    nrlpf: "nrlpf",
+    octaver: "octaver",
+    pan: "pan",
+    panslicer: "panslicer",
+    pingPong: "ping_pong",
+    pitchShift: "pitch_shift",
+    rbpf: "rbpf",
+    record: "record",
+    reverb: "reverb",
+    rhpf: "rhpf",
+    ringMod: "ring_mod",
+    rlpf: "rlpf",
+    slicer: "slicer",
+    soundOut: "sound_out",
+    soundOutStereo: "sound_out_stereo",
+    tanh: "tanh",
+    tremolo: "tremolo",
+    vowel: "vowel",
+    whammy: "whammy",
+    wobble: "wobble"
+  }
+
   this.SAMPLES = {
     ambi: {
       choir:      "ambi_choir",
@@ -211,6 +256,17 @@ var SonicPJs = function() {
     return `choose(${formatInputValues(input)})`;
   }
 
+  this.scale = (tonic, name, numOctaves = 1) => {
+    return `scale(:${tonic}, :${name}, num_octaves: ${numOctaves})`;
+  }
+
+  this.rrand = (min, max = null) => {
+    if (max) {
+      return `rrand(${min}, ${max})`;
+    }
+    return `rrand(${min})`;
+  }
+
   this.play = (input, params = null) => {
     console.log(`play ${formatInputValues(input)}${getParameterString(params)}`);
   }
@@ -225,6 +281,12 @@ var SonicPJs = function() {
 
   this.useSynth = (name) => {
     console.log(`use_synth :${name}`)
+  }
+
+  this.loop = (innerFunc) => {
+    console.log(`loop do`);
+    innerFunc();
+    console.log(`end`);
   }
 
   this.liveLoop = (name, innerFunc) => {
