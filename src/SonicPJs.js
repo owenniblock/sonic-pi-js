@@ -1,49 +1,94 @@
 var SonicPJs = function() {
 
+  this.SYNTH = {
+    beep:           "beep",
+    blade:          "blade",
+    bnoise:         "bnoise",
+    chipbass:       "chipbass",
+    chiplead:       "chiplead",
+    chipnoise:      "chipnoise",
+    cnoise:         "cnoise",
+    darkAmbience:   "dark_ambience",
+    dpulse:         "dpulse",
+    dsaw:           "dsaw",
+    dtri:           "dtri",
+    dullBell:       "dull_bell",
+    fm:             "fm",
+    gnoise:         "gnoise",
+    growl:          "growl",
+    hollow:         "hollow",
+    hoover:         "hoover",
+    modBeep:        "mod_beep",
+    modDSaw:        "mod_dsaw",
+    mod_FM:         "mod_fm",
+    modPulse:       "mod_pulse",
+    modSaw:         "mod_saw",
+    modSine:        "mod_sine",
+    modTri:         "mod_tri",
+    noise:          "noise",
+    piano:          "piano",
+    pluck:          "pluck",
+    pnoise:         "pnoise",
+    prettyBell:     "pretty_bell",
+    prophet:        "prophet",
+    pulse:          "pulse",
+    saw:            "saw",
+    sine:           "sine",
+    soundIn:        "sound_in",
+    soundInStereo:  "sound_in_stereo",
+    square:         "square",
+    subpulse:       "subpulse",
+    supersaw:       "supersaw",
+    tb303:          "tb303",
+    techSaws:       "tech_saws",
+    tri:            "tri",
+    zawa:           "zawa"
+  };
+
   this.FX = {
-    autotuner: "autotuner",
-    bandEQ: "band_eq",
-    bitcrusher: "bitcrusher",
-    bpf: "bpf",
-    compressor: "compressor",
-    distortion: "distortion",
-    echo: "echo",
-    eq: "eq",
-    flanger: "flanger",
-    gverb: "gverb",
-    hpf: "hpf",
-    ixiTechno: "ixi_techno",
-    krush: "krush",
-    level: "level",
-    lpf: "lpf",
-    mono: "mono",
-    nbpf: "nbpf",
-    nhpf: "nhpf",
-    nlpf: "nlpf",
-    normaliser: "normaliser",
-    nrbpf: "nrbpf",
-    nrhpf: "nrhpf",
-    nrlpf: "nrlpf",
-    octaver: "octaver",
-    pan: "pan",
-    panslicer: "panslicer",
-    pingPong: "ping_pong",
-    pitchShift: "pitch_shift",
-    rbpf: "rbpf",
-    record: "record",
-    reverb: "reverb",
-    rhpf: "rhpf",
-    ringMod: "ring_mod",
-    rlpf: "rlpf",
-    slicer: "slicer",
-    soundOut: "sound_out",
+    autotuner:      "autotuner",
+    bandEQ:         "band_eq",
+    bitcrusher:     "bitcrusher",
+    bpf:            "bpf",
+    compressor:     "compressor",
+    distortion:     "distortion",
+    echo:           "echo",
+    eq:             "eq",
+    flanger:        "flanger",
+    gverb:          "gverb",
+    hpf:            "hpf",
+    ixiTechno:      "ixi_techno",
+    krush:          "krush",
+    level:          "level",
+    lpf:            "lpf",
+    mono:           "mono",
+    nbpf:           "nbpf",
+    nhpf:           "nhpf",
+    nlpf:           "nlpf",
+    normaliser:     "normaliser",
+    nrbpf:          "nrbpf",
+    nrhpf:          "nrhpf",
+    nrlpf:          "nrlpf",
+    octaver:        "octaver",
+    pan:            "pan",
+    panslicer:      "panslicer",
+    pingPong:       "ping_pong",
+    pitchShift:     "pitch_shift",
+    rbpf:           "rbpf",
+    record:         "record",
+    reverb:         "reverb",
+    rhpf:           "rhpf",
+    ringMod:        "ring_mod",
+    rlpf:           "rlpf",
+    slicer:         "slicer",
+    soundOut:       "sound_out",
     soundOutStereo: "sound_out_stereo",
-    tanh: "tanh",
-    tremolo: "tremolo",
-    vowel: "vowel",
-    whammy: "whammy",
-    wobble: "wobble"
-  }
+    tanh:           "tanh",
+    tremolo:        "tremolo",
+    vowel:          "vowel",
+    whammy:         "whammy",
+    wobble:         "wobble"
+  };
 
   this.SAMPLES = {
     ambi: {
@@ -250,56 +295,76 @@ var SonicPJs = function() {
       rewind: "vinyl_rewind",
       scratch: "vinyl_scratch"
     }
-  }
+  };
 
   this.choose = (input) => {
     return `choose(${formatInputValues(input)})`;
-  }
+  };
+
+  this.chord = (tonic, name) => {
+    return `chord(${formatInputValues(tonic)}, ${name})`;
+  };
 
   this.scale = (tonic, name, numOctaves = 1) => {
     return `scale(:${tonic}, :${name}, num_octaves: ${numOctaves})`;
-  }
+  };
 
-  this.rrand = (min, max = null) => {
-    if (max) {
-      return `rrand(${min}, ${max})`;
+  this.rrand = (min, max) => {
+    return `rrand(${min}, ${max})`;
+  };
+
+  this.play = (input, params = null, name = null) => {
+    if (name) {
+      console.log(`${name} = play ${formatInputValues(input)}${getParameterString(params)}`);
     }
-    return `rrand(${min})`;
-  }
-
-  this.play = (input, params = null) => {
-    console.log(`play ${formatInputValues(input)}${getParameterString(params)}`);
-  }
+    else {
+      console.log(`play ${formatInputValues(input)}${getParameterString(params)}`);
+    }
+  };
 
   this.sleep = (time) => {
     console.log(`sleep ${time.toString()}`);
-  }
+  };
 
   this.sample = (sampleName, params) => {
     console.log(`sample :${sampleName}${getParameterString(params)}`)
-  }
+  };
+
+  this.control = (input, params) => {
+    console.log(`control ${input}${getParameterString(params)}`)
+  };
 
   this.useSynth = (name) => {
     console.log(`use_synth :${name}`)
+  };
+
+  this.createVariable = (name, value) => {
+    console.log(`${name} = ${value}`);
   }
+
+  this.withSynth = (name, innerFunc) => {
+    console.log(`with_synth :${name} do`);
+    innerFunc();
+    console.log(`end`);
+  };
 
   this.loop = (innerFunc) => {
     console.log(`loop do`);
     innerFunc();
     console.log(`end`);
-  }
+  };
 
   this.liveLoop = (name, innerFunc) => {
     console.log(`live_loop :${name} do`);
     innerFunc();
     console.log(`end`);
-  }
+  };
 
   this.withFx = (name, params, innerFunc) => {
     console.log(`with_fx :${name}${getParameterString(params)} do`);
     innerFunc();
     console.log(`end`);
-  }
+  };
 
   getParameterString = (params) => {
     parameters = "";
@@ -309,7 +374,7 @@ var SonicPJs = function() {
     }
 
     return parameters;
-  }
+  };
 
   formatInputValues = (input) => {
     if (Array.isArray(input)) {
@@ -317,7 +382,7 @@ var SonicPJs = function() {
     }
 
     return input.toString();
-  }
-}
+  };
+};
 
 module.exports = SonicPJs;
