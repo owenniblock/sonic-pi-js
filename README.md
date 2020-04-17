@@ -2,7 +2,7 @@
 Hacking a way of writing JavaScript and sending it to Sonic PI. Just for fun!
 
 ## What is this?
-I wanted to run Sonic PI from VS Code (which I found I can do with a VS
+I wanted to run Sonic PI from VS Code - which I found I can do with a VS
 Code extension. But I also want to write the Sonic PI code in JavaScript
 (don't ask me why).
 
