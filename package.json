@@ -1,0 +1,11 @@
+{
+  "name": "sonic-pi-js",
+  "version": "0.0.2",
+  "description": "JavaScript support library for Sonic Pi",
+  "main": "src/SonicPJs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Owen Niblock",
+  "license": "MIT"
+}
